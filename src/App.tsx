@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ResetCSS } from 'uikit';
+import ToastListener from 'uikit/components/ToastListener';
+import GlobalStyle from 'uikit/Global';
+import Nav from 'views/Nav';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <ResetCSS/>
+      <GlobalStyle/>
+      <Routes>
+        <Route path='/' element={<Nav />} >
+          <Route 
+            path='*'
+            element={
+              <h2>Nothing here</h2>
+            }
+          />
+        </Route>
+        
+      </Routes>
+      <ToastListener />
+    </BrowserRouter>
+  )
 }
 
 export default App;
